@@ -1,22 +1,14 @@
-package com.metrodata.serverapp.entity;
+package com.metrodata.serverapp.model.response;
 
-import javax.persistence.*;
+public class RegionResponse {
 
-@Entity
-@Table(name = "tb_region")
-public class Region {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-    @Column(nullable = false)
     private String name;
 
-    public Region() {
+    public RegionResponse() {
     }
 
-    public Region(long id, String name) {
+    public RegionResponse(long id, String name) {
         this.id = id;
         this.name = name;
     }
