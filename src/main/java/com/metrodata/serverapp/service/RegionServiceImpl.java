@@ -1,9 +1,11 @@
 package com.metrodata.serverapp.service;
 
 import com.metrodata.serverapp.entity.Region;
+import com.metrodata.serverapp.exception.CustomException;
 import com.metrodata.serverapp.model.request.RegionRequest;
 import com.metrodata.serverapp.model.response.RegionResponse;
 import com.metrodata.serverapp.repository.RegionRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,13 +13,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class RegionServiceImpl implements RegionService {
-    private final RegionRepository regionRepository;
-
-    @Autowired
-    public RegionServiceImpl(RegionRepository regionRepository) {
-        this.regionRepository = regionRepository;
-    }
+    private  RegionRepository regionRepository;
 
     @Override
     public List<RegionResponse> getAll() {
@@ -32,7 +30,10 @@ public class RegionServiceImpl implements RegionService {
     @Override
     public RegionResponse getById(long id) {
         Region region = regionRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Region with given id " + id + " not found"));
+                .orElseThrow(() -> new CustomException(
+                        "Region with given id " + id + " not found",
+                        "REGION_NOT_FOUND",
+                        404));
         return mappingRegionToRegionResponse(region);
     }
 

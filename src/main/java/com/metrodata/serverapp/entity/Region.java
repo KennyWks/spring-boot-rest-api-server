@@ -1,7 +1,14 @@
 package com.metrodata.serverapp.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "tb_region")
 public class Region {
@@ -12,28 +19,4 @@ public class Region {
 
     @Column(nullable = false)
     private String name;
-
-    public Region() {
-    }
-
-    public Region(long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
