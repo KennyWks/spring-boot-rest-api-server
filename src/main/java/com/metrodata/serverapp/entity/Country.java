@@ -23,5 +23,6 @@ public class Country {
     @Column(nullable = false)
     private String name;
 
-    private long regionId;
+    @ManyToOne
+    private Region region;
 }
