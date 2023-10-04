@@ -1,10 +1,11 @@
-package com.metrodata.serverapp.service;
+package com.metrodata.serverapp.service.impl;
 
 import com.metrodata.serverapp.entity.Region;
 import com.metrodata.serverapp.exception.CustomException;
 import com.metrodata.serverapp.model.request.RegionRequest;
 import com.metrodata.serverapp.model.response.RegionResponse;
 import com.metrodata.serverapp.repository.RegionRepository;
+import com.metrodata.serverapp.service.RegionService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
