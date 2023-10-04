@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmployeeResponse {
-
+    private long id;
     private String name;
     private String email;
     private UserResponse user;

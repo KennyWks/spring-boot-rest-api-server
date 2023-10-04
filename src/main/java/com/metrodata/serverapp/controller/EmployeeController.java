@@ -1,5 +1,6 @@
 package com.metrodata.serverapp.controller;
 
+import com.metrodata.serverapp.model.request.EmployeeRequest;
 import com.metrodata.serverapp.model.request.RegistrationRequest;
 import com.metrodata.serverapp.model.response.EmployeeResponse;
 import com.metrodata.serverapp.service.EmployeeService;
@@ -32,4 +33,13 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeService.create(registrationRequest), HttpStatus.CREATED);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<EmployeeResponse> update(@PathVariable long id, @RequestBody EmployeeRequest employeeRequest){
+        return new ResponseEntity<>(employeeService.update(id,employeeRequest),HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<EmployeeResponse> delete(@PathVariable long id){
+        return new ResponseEntity<>(employeeService.delete(id),HttpStatus.OK);
+    }
 }
