@@ -20,13 +20,15 @@ public class User {
     private String username;
     private String password;
     private boolean isAccountLocked = false;
+    private boolean isEnabled = true;
 
     @OneToOne
     @MapsId
     @JoinColumn(name = "id")
     private Employee employee;
 
-    @ManyToMany
+    // LAZY
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "tb_user_role",
             joinColumns = @JoinColumn(name = "user_id"),

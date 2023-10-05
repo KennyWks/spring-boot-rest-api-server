@@ -15,6 +15,7 @@ import com.metrodata.serverapp.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private EmployeeRepository employeeRepository;
     private RoleRepository roleRepository;
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public List<EmployeeResponse> getAll() {
@@ -59,6 +61,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         // Mapping EmployeeRequest -> User
         User user = new User();
         BeanUtils.copyProperties(registrationRequest, user);
+        user.setPassword(passwordEncoder.encode(registrationRequest.getPassword())); // Encode Password
         user.setEmployee(employee);
 
         // Add Role on user
