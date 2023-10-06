@@ -1,5 +1,6 @@
-package com.metrodata.serverapp.entity;
+package com.metrodata.serverapp.model;
 
+import com.metrodata.serverapp.entity.User;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -24,10 +24,10 @@ spring:
           starttls:
             enable: true
 
-  security:
-    user:
-      name: kenny
-      password: kenny
+#  security:
+#    user:
+#      name: kenny
+#      password: kenny
 
 
 

@@ -1,9 +1,8 @@
 package com.metrodata.serverapp.service.impl;
 
-import com.metrodata.serverapp.entity.AppUserDetail;
+import com.metrodata.serverapp.model.AppUserDetail;
 import com.metrodata.serverapp.entity.User;
 import com.metrodata.serverapp.exception.CustomException;
-import com.metrodata.serverapp.model.response.UserResponse;
 import com.metrodata.serverapp.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
