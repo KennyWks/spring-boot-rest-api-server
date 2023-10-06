@@ -1,5 +1,6 @@
 package com.metrodata.serverapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,22 +12,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tb_role")
-public class Role {
+@Table(name = "tb_privileges")
+public class Privileges {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
-    private List<User> users;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "tb_role_privilege",
-    joinColumns = @JoinColumn(name = "role_id"),
-    inverseJoinColumns = @JoinColumn(name = "privilege_id"))
-    private List<Privileges> privileges;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToMany(mappedBy = "privileges")
+    private List<Role> roles;
 
 }

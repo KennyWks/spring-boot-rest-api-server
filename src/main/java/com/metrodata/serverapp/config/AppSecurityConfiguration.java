@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -20,6 +21,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 @AllArgsConstructor
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class AppSecurityConfiguration {
 
     private AppUserDetailService appUserDetailService;
@@ -43,12 +45,9 @@ public class AppSecurityConfiguration {
                 .authorizeRequests(auth ->
                     auth
                             .antMatchers(HttpMethod.POST, "/employee").permitAll()// Registration
-                            .antMatchers("/region/**").hasRole("USER")
-                            .antMatchers("/employee/**").hasRole("ADMIN")
-                            .antMatchers("/country/**").hasAnyRole("USER", "ADMIN")
-                            .anyRequest().permitAll())
+                            .anyRequest().authenticated())
                 .userDetailsService(appUserDetailService)
-                .formLogin()
+                .httpBasic()
                 .and()
                 .build();
     }
